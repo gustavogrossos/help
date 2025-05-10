@@ -2,9 +2,9 @@ package org.jala.university.application.service;
 
 import lombok.RequiredArgsConstructor;
 import org.jala.university.application.dto.TransacaoDto;
-import org.jala.university.domain.entity.Banco;
 import org.jala.university.domain.entity.Conta;
 import org.jala.university.domain.entity.Transacao;
+import org.jala.university.domain.repository.BancoRepository;
 import org.jala.university.domain.repository.ContaRepository;
 import org.jala.university.domain.repository.TransacaoRepository;
 import org.springframework.data.domain.PageRequest;
@@ -67,7 +67,6 @@ public class TransactionServiceImpl implements TransactionService {
         contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
         contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
 
-        // Registra a transação
         Transacao transacao = Transacao.builder()
                 .idContaOrigem(idContaOrigem)
                 .idContaDestino(idContaDestino)
@@ -86,4 +85,34 @@ public class TransactionServiceImpl implements TransactionService {
 
         return "Transferência realizada com sucesso!";
     }
+
+    @Override
+    public String transferirParaTerceiros(Integer idContaOrigem, Integer idContaDestino, BigDecimal valor, String descricao) {
+        // Implementação pendente
+        return "Funcionalidade não implementada";
     }
+
+    @Override
+    public String transferirParaOutroBanco(Integer idContaOrigem, String codigoBanco, String agenciaDestino,
+                                           String contaDestino, String digitoDestino, BigDecimal valor, String descricao) {
+        // Implementação pendente
+        return "Funcionalidade não implementada";
+    }
+
+    @Override
+    public List<TransacaoDto> obterExtrato(Integer idConta, Integer quantidade) {
+        // Implementação pendente
+        return List.of();
+    }
+
+    @Override
+    public List<TransacaoDto> obterHistoricoTransacoes(Integer idConta) {
+        // Implementação pendente
+        return List.of();
+    }
+
+    // Método auxiliar para gerar código de autenticação
+    private String gerarCodigoAutenticacao() {
+        return UUID.randomUUID().toString();
+    }
+}

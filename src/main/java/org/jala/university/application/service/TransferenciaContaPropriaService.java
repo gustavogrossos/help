@@ -27,8 +27,8 @@ public class TransferenciaContaPropriaService {
             return "As contas de origem e destino não podem ser iguais.";
         }
 
-        Optional<Conta> contaOrigemOpt = contaRepository.findById(idContaOrigem);
-        Optional<Conta> contaDestinoOpt = contaRepository.findById(idContaDestino);
+        Optional<Conta> contaOrigemOpt = contaRepository.findById(idContaOrigem.intValue());
+        Optional<Conta> contaDestinoOpt = contaRepository.findById(idContaDestino.intValue());
 
         if (contaOrigemOpt.isEmpty()) {
             return "Conta de origem não encontrada.";

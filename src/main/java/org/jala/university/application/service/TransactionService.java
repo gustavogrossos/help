@@ -1,7 +1,6 @@
 package org.jala.university.application.service;
 
-import org.jala.university.application.dto.TransacaoDTO;
-import org.jala.university.domain.entity.Transacao;
+import org.jala.university.application.dto.TransacaoDto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +15,7 @@ public interface TransactionService {
                                     String agenciaDestino, String contaDestino,
                                     String digitoDestino, BigDecimal valor, String descricao);
 
-    List<TransacaoDTO> obterExtrato(Integer idConta, Integer quantidade);
+    List<TransacaoDto> obterExtrato(Integer idConta, Integer quantidade);
 
-    List<TransacaoDTO> obterHistoricoTransacoes(Integer idConta);
+    List<TransacaoDto> obterHistoricoTransacoes(Integer idConta);
 }
