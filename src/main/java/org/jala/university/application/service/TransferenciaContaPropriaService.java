@@ -41,13 +41,17 @@ public class TransferenciaContaPropriaService {
         Conta contaOrigem = contaOrigemOpt.get();
         Conta contaDestino = contaDestinoOpt.get();
 
+        if (!contaOrigem.getIdCliente().equals(contaDestino.getIdCliente())) {
+            return "As contas não pertencem ao mesmo cliente.";
+        }
+
         if (contaOrigem.getSaldo().compareTo(valor) < 0) {
             return "Saldo insuficiente para realizar a transferência.";
         }
 
         try {
-            contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
-            contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
+            contaOrigem.debitar(valor);
+            contaDestino.creditar(valor);
 
             contaRepository.save(contaOrigem);
             contaRepository.save(contaDestino);
